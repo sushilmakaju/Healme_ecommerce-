@@ -11,7 +11,7 @@ import Aboutcomponent from './Component/About/aboutcomponent';
 // import Functional_props from './Component/Functional_props/functional_props.jsx';
 import ProductComponent from './Component/ProductComponent/productComponent.jsx';
 import Login_Form from './assignment/forms/login_form.jsx';
-import Register_form from './assignment/forms/register_form.jsx';
+import RegistrationForm from './Component/Register/RegisterComponent.jsx';
 import Contact_form from './assignment/forms/contact_form.jsx';
 import EventRegistration from './assignment2/Event_registration/Event_registration.jsx';
 
@@ -31,7 +31,7 @@ class App extends Component {
         <Route path='/contactus' element={<Contact_form/>} />
         <Route path='/product' element={<ProductComponent/>} />
         <Route path='/login' element={<Login_Form/>} />
-        <Route path='/signup' element={<Register_form/>} />
+        <Route path='/signup' element={<RegistrationForm/>} />
         <Route path='/assignment2' element={<EventRegistration/>} />
 
       </Routes>

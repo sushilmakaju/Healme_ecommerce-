@@ -1,5 +1,6 @@
 import React from 'react'
 import Cardcomponent from '../Card/card'
+import Timer from '../Watch/timerComponent'
 
 const ShopComponent = ({onButtonClick}) => {
   const shopProduct = [
@@ -22,6 +23,7 @@ const ShopComponent = ({onButtonClick}) => {
       {/* shopComponent */}
       <Cardcomponent productData={shopProduct}/>
       <button onClick={onButtonClick} class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add to cart</button>
+      <Timer />
       
     </div>
     </>
