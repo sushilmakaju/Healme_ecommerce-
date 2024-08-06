@@ -7,7 +7,7 @@ const UserProfile = require("../models/userProfile");
 dotenv.config();
 
 const registerUser = async (req, res) => {
-  const { name, email, password } = req.body;
+  const {name, email, password, role } = req.body;
 
   try {
     let user = await User.findOne({ email });
@@ -17,7 +17,6 @@ const registerUser = async (req, res) => {
     }
 
     user = new User({
-      name,
       email,
       password,
     });
@@ -64,6 +63,9 @@ const registerUser = async (req, res) => {
     }
     };
 
+
+
+    
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
 

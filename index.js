@@ -103,6 +103,7 @@ const profileRoutes = require('./src/routes/profileRoutes')
 const authRoutes = require('./src/routes/authuser_route')
 const categoryRoutes = require('./src/routes/categoryRoutes')
 const productRoutes = require('./src/routes/productroutes')
+const cors = require('cors')
 const express = require('express'); 
 const app = express();
 const port = 4000;
@@ -118,10 +119,11 @@ connectDB()
 
 
   app.use(express.json());
+  app.use(cors());
 
   app.use('/user', userProfileRoutes)
   app.use('/api/auth', authRoutes)
-  app.use('/api', categoryRoutes)
+  app.use('/api/category', categoryRoutes)
   app.use('/api', productRoutes)
 
   // Serve static files from the 'uploads' directory
