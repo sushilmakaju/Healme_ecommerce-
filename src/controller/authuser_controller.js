@@ -17,8 +17,10 @@ const registerUser = async (req, res) => {
     }
 
     user = new User({
+      name,
       email,
       password,
+      role
     });
 
     await user.save();

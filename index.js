@@ -124,7 +124,7 @@ connectDB()
   app.use('/user', userProfileRoutes)
   app.use('/api/auth', authRoutes)
   app.use('/api/category', categoryRoutes)
-  app.use('/api', productRoutes)
+  app.use('/api/products', productRoutes)
 
   // Serve static files from the 'uploads' directory
   app.use("/uploads", express.static(__dirname + "/uploads"));
