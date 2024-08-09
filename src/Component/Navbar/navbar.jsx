@@ -23,6 +23,7 @@ function Navbar() {
               <Link to="/about" className="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">About</Link>
               <Link to="/contactus" className="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Contact Us</Link>
               <Link to="/product" className="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Product</Link>
+              <Link to="/listproduct" className="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">ListProduct</Link>
               <Link to="/category" className="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Category</Link>
             </div>
           </div>
@@ -61,7 +62,8 @@ function Navbar() {
             <li><Link to="/contact" className="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Contact</Link></li>
             <li><Link to="/product" className="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Product</Link></li>
             <li><Link to="/category" className="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Category</Link></li>
-            <li><Link to="/login" className="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Log In</Link></li>
+            <li><Link to="/category" className="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">List Product</Link></li>
+            <li><Link to="/listproduct" className="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Log In</Link></li>
             <li><Link to="/signup" className="block text-sm px-2 py-4 hover:bg-green-500 transition duration-300">Sign Up</Link></li>
           </ul>
         </div>

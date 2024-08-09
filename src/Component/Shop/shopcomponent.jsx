@@ -1,33 +1,66 @@
-import React from 'react'
-import Cardcomponent from '../Card/card'
-import Timer from '../Watch/timerComponent'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-const ShopComponent = ({onButtonClick}) => {
-  const shopProduct = [
-    {
-      imgUrl: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      name: "Headphone",
-      position: "$200"
-    },
-    {
-      imgUrl: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZHVjdHxlbnwwfHwwfHx8MA%3D%3D",
-      name: "Smartwatch",
-      position: "$100"
-    },
-  ]
+const Shopcomponent = () => {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
- 
+  const fetchProducts = async () => {
+    try {
+      const response = await axios.get('http://localhost:4000/api/products');
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching products:', error);
+      setError(error.message);
+      return [];
+    }
+  };
+
+  useEffect(() => {
+    const getProducts = async () => {
+      try {
+        const data = await fetchProducts();
+        console.log('Fetched products:', data);
+        setProducts(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getProducts();
+  }, []);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
+
   return (
-    <>
-    <div>
-      {/* shopComponent */}
-      <Cardcomponent productData={shopProduct}/>
-      <button onClick={onButtonClick} class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add to cart</button>
-      <Timer />
-      
+    <div className="p-4">
+      <h1 className="text-2xl font-bold mb-4">Products</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {products.map((product) => (
+          <div key={product._id} className="border rounded-lg p-4 shadow-md">
+            <img
+              src={product.productImage || 'https://via.placeholder.com/150'}
+              alt={product.name}
+              className="w-full h-48 object-cover mb-4"
+              onError={(e) => {
+                e.target.src = 'https://via.placeholder.com/150';
+                // console.log('Image failed to load, using fallback');
+                // console.log('Image URL:', product.productImage); // Log the URL to check
+              }}
+            />
+            <h2 className="text-xl font-semibold mb-2">{product.name}</h2>
+            <p className="text-gray-700 mb-2">{product.description}</p>
+            <p className="text-gray-900 font-bold">${product.price}</p>
+            <p className="text-gray-600 mt-2">In stock: {product.countInStock}</p>
+          </div>
+        ))}
+      </div>
     </div>
-    </>
-  )
-}
+  );
+};
 
-export default ShopComponent
+export default Shopcomponent;
